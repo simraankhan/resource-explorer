@@ -3,10 +3,8 @@ import Search from "@/components/Search";
 import Sort from "@/components/Sort";
 
 const Home = async ({
-  _,
   searchParams,
 }: {
-  _: string;
   searchParams: Promise<Record<string, string>>;
 }) => {
   const query = await searchParams;
