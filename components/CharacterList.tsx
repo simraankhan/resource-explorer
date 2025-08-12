@@ -26,9 +26,15 @@ const CharacterList = ({
     queryFn: ({ signal, pageParam }) =>
       fetchCharacters(signal, pageParam.page, { name: pageParam?.name }),
     getNextPageParam: (response) => {
-      const nextUrl = response?.info?.next;
-      const url = new URL(nextUrl);
-      const page = url.searchParams.get("page");
+      let page = null;
+      try {
+        const nextUrl = response?.info?.next;
+        const url = new URL(nextUrl);
+        page = url.searchParams.get("page");
+      } catch (error) {
+        console.error(error);
+        page = null;
+      }
 
       return {
         page: page ? Number(page) : 2,
@@ -60,6 +66,7 @@ const CharacterList = ({
   if (isLoading) return <Loading />;
 
   if (error) return <Error refetch={refetch} />;
+  console.log({ data });
 
   if (data?.pages.length === 0) {
     return (

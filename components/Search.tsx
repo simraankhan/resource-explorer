@@ -20,8 +20,10 @@ const Search = ({ placeholderText, searchParams }: Props) => {
     if (!searchTerm) return;
 
     const delay = setTimeout(() => {
+      const urlParam = new URLSearchParams();
+      urlParam.append("name", searchTerm);
       router.push(
-        `/?name=${searchTerm}${
+        `/?${urlParam.toString()}${
           searchParams?.sort ? "&sort=" + searchParams.sort : ""
         }`
       );
