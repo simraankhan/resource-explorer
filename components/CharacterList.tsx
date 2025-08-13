@@ -16,7 +16,7 @@ const CharacterList = ({
   const {
     data,
     error,
-    isLoading,
+    isFetching,
     refetch,
     hasNextPage,
     isFetchingNextPage,
@@ -63,10 +63,9 @@ const CharacterList = ({
     },
   });
 
-  if (isLoading) return <Loading />;
+  if (isFetching) return <Loading />;
 
   if (error) return <Error refetch={refetch} />;
-  console.log({ data });
 
   if (data?.pages.length === 0) {
     return (
@@ -90,7 +89,7 @@ const CharacterList = ({
       ))}
       <button
         onClick={() => fetchNextPage()}
-        disabled={!hasNextPage || isLoading}
+        disabled={!hasNextPage || isFetching}
         className="btn-secondary mx-auto mt-4"
       >
         {isFetchingNextPage

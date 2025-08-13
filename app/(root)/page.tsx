@@ -11,7 +11,7 @@ const Home = async ({
 
   return (
     <div className="px-5 xs:px-10 md:px-16">
-      <div className="flex flex-row justify-center my-10">
+      <div className="flex flex-row  my-10">
         <Search placeholderText="Search a character" searchParams={query} />
       </div>
       <Sort searchParams={query} />
